@@ -1,0 +1,37 @@
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.security.PublicKey;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btn = (Button)findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText txtC = (EditText) findViewById(R.id.txtC);
+                int tempC = Integer.parseInt(txtC.getText().toString());
+                EditText edtPlace = (EditText) findViewById(R.id.edtPlace);
+                Intent intent = new Intent(MainActivity.this,FAcitivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TEMPC",tempC);
+                bundle.putString("PLACE",edtPlace.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+    }
+}
